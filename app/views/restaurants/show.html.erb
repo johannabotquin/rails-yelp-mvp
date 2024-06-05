@@ -15,5 +15,18 @@
   <div class="phone_number">
     <p><strong>Phone Number : <%= @restaurant.phone_number %></strong></p>
   </div>
+  <br>
 
+  <%= link_to "Add a new review", new_restaurant_review_path(@restaurant) %>
+
+  <div class="reviews">
+    <h2>Reviews</h2>
+    <% @restaurant.reviews.each do |review|%>
+    <p><%= review.content %></p>
+    <p>Rating : <%= review.rating %></p>
+
+    <% end %>
+  </div>
+
+  <%= link_to "Back to the restaurants list", restaurants_path %>
 </div>
