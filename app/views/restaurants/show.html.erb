@@ -17,15 +17,23 @@
   </div>
   <br>
 
-  <%= link_to "Add a new review", new_restaurant_review_path(@restaurant) %>
+  <div class="add-review">
+    <h1>Add a new review</h1>
 
-  <div class="reviews">
-    <h2>Reviews</h2>
-    <% @restaurant.reviews.each do |review|%>
-    <p><%= review.content %></p>
-    <p>Rating : <%= review.rating %></p>
-
+    <%= simple_form_for [@restaurant, @review] do |f| %>
+      <%= f.input :content %>
+      <%= f.input :rating, collection: (0..5) %>
+      <%= f.submit "Add this review", class: "btn btn-primary" %>
     <% end %>
+    </div>
+
+    <div class="reviews">
+      <h2>Reviews</h2>
+      <% @restaurant.reviews.each do |review|%>
+      <p><%= review.content %></p>
+      <p>Rating : <%= review.rating %></p>
+
+      <% end %>
   </div>
 
   <%= link_to "Back to the restaurants list", restaurants_path %>
